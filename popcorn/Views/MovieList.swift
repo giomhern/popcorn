@@ -82,7 +82,3 @@ struct MovieList: View {
         .modelContainer(SampleData.shared.modelContainer)
 }
 
-#Preview("No Movies View") {
-    MovieList()
-}
-

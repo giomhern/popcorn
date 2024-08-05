@@ -22,8 +22,7 @@ struct MovieList: View {
     }
 
     var body: some View {
-        NavigationSplitView {
-            Group {
+        Group {
                 if !movies.isEmpty {
                     List {
                         ForEach(movies) { movie in
@@ -62,10 +61,6 @@ struct MovieList: View {
                 }
                 .interactiveDismissDisabled()
             }
-        } detail: {
-            Text("Select an movie")
-                .navigationTitle("Movie")
-        }
     }
 
     private func addMovie() {
@@ -86,16 +81,25 @@ struct MovieList: View {
 }
 
 #Preview {
-    MovieList()
-        .modelContainer(SampleData.shared.modelContainer)
+    NavigationStack{
+        MovieList()
+            .modelContainer(SampleData.shared.modelContainer)
+    }
+    
 }
 
 #Preview("Empty List") {
-    MovieList()
-        .modelContainer(for: Movie.self, inMemory: true)
+    NavigationStack {
+        MovieList()
+            .modelContainer(for: Movie.self, inMemory: true)
+    }
+    
 }
 
 #Preview("Filtered") {
-    MovieList(titleFilter: "tr")
-        .modelContainer(SampleData.shared.modelContainer)
+    NavigationStack {
+        MovieList(titleFilter: "tr")
+            .modelContainer(SampleData.shared.modelContainer)
+    }
+   
 }
